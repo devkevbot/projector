@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import * as path from "path";
-import { Config, Operation } from "./config";
+import { Config } from "./config";
 
 export type Data = {
   projector: {
@@ -85,5 +85,13 @@ export class Projector {
     if (dir) {
       delete dir[key];
     }
+  }
+
+  save() {
+    const configPath = path.dirname(this.config.config);
+    if (!fs.existsSync(configPath)) {
+      fs.mkdirSync(configPath, { recursive: true });
+    }
+    fs.writeFileSync(this.config.config, JSON.stringify(this.data));
   }
 }
