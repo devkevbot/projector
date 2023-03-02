@@ -97,7 +97,7 @@ func (p *Projector) Save() error {
 	if err != nil {
 		return err
 	}
-	os.WriteFile(p.config.Config, jsonString, 755)
+	os.WriteFile(p.config.Config, jsonString, 0755)
 	return nil
 }
 
